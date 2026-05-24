@@ -10,7 +10,7 @@ object arenaGranel {
 }
 
 object bumblebee {
-	var estaTranformado = true
+	var property estaTranformado = true
 	method peso() { 
 		return 800 
 	}
@@ -35,7 +35,7 @@ object paqueteLadrillos {
 }
 
 object bateriaAntiaérea {
-	var estaConLosMisiles = true
+	var property estaConLosMisiles = true
 	method peso() {
 		return 300
 	}
@@ -50,7 +50,7 @@ object bateriaAntiaérea {
 }
 
 object residuosRadioactivos {
-	var peso = 0
+	var property peso = 0
 	method peso() {
 		return peso
 	}
