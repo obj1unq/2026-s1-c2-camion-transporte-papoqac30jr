@@ -28,4 +28,8 @@ object camion {
 	method estaExcedidoDePeso() {
 		return self.tara() + self.sumaDePesoEnElCamion() > capacidadMaxima 
 	}
+
+	method elQueTieneNivelDePeligrosidadDe(peligrosidad) {
+		return cosas.find({cosa => cosa.nivelPeligrosidad() == peligrosidad})
+	}
 }

@@ -34,4 +34,18 @@ describe "las pruebas del camion" {
         camion.cargar(paqueteLadrillos)
         assert.equals(true , camion.estaExcedidoDePeso())
     }
+    test "la calavera significa PELIGRO!" {
+        bumblebee.estado(bumblebeeRobot)
+        camion.cargar(bumblebee)
+        camion.cargar(bateriaAntiaerea)
+        camion.cargar(residuosRadioactivos)
+        assert.equals(bateriaAntiaerea , camion.elQueTieneNivelDePeligrosidadDe(0))
+        assert.equals(bumblebee , camion.elQueTieneNivelDePeligrosidadDe(30))
+        assert.equals(residuosRadioactivos , camion.elQueTieneNivelDePeligrosidadDe(200))
+        bumblebee.estado(bumblebeeAuto)
+        bateriaAntiaerea.estado(bateriaAntiaereaCargada)
+        assert.equals(bumblebee , camion.elQueTieneNivelDePeligrosidadDe(15))
+        assert.equals(bateriaAntiaerea , camion.elQueTieneNivelDePeligrosidadDe(100))
+        assert.throwsException({camion.elQueTieneNivelDePeligrosidadDe(150)})
+    }
 }
