@@ -12,10 +12,10 @@ describe "las pruebas del camion" {
     test "peso en el camion es numero par?" {
         camion.cargar(paqueteLadrillos)
         camion.cargar(bumblebee)
-        assert.equals(true, camion.suPesoEsPar())
+        assert.equals(true, camion.elPesoDeLasCosasEsPar())
         arenaGranel.peso(1)
         camion.cargar(arenaGranel)
-        assert.equals(false, camion.suPesoEsPar())
+        assert.equals(false, camion.elPesoDeLasCosasEsPar())
     }
     test "hay algo que pese esto en el camion?" {
         camion.cargar(paqueteLadrillos)
@@ -23,5 +23,15 @@ describe "las pruebas del camion" {
         assert.equals(true , camion.tieneAlgoQuePesa(500))
         assert.equals(true , camion.tieneAlgoQuePesa(2))
         assert.equals(false , camion.tieneAlgoQuePesa(5))
+    }
+    test "esta excedido el peso?" {
+        camion.cargar(bumblebee)
+        camion.cargar(knightRider)
+        assert.equals(false , camion.estaExcedidoDePeso())
+        arenaGranel.peso(200)
+        camion.cargar(arenaGranel)
+        assert.equals(false , camion.estaExcedidoDePeso())
+        camion.cargar(paqueteLadrillos)
+        assert.equals(true , camion.estaExcedidoDePeso())
     }
 }

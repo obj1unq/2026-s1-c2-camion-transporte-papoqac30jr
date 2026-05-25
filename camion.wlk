@@ -2,6 +2,8 @@ import cosas.*
 
 object camion {
 	const property cosas = #{}
+	const property tara = 1000
+	const capacidadMaxima = 2500
 		
 	method cargar(unaCosa) {
 		cosas.add(unaCosa)
@@ -11,15 +13,19 @@ object camion {
 		cosas.remove(unaCosa)
 	}
 
-	method suPesoEsPar() {
-		return self.sumaDePesos().even()
+	method elPesoDeLasCosasEsPar() {
+		return self.sumaDePesoEnElCamion().even()
 	}
 
-	method sumaDePesos() {
+	method sumaDePesoEnElCamion() {
 		return cosas.sum({cosa => cosa.peso()})
 	}
 
 	method tieneAlgoQuePesa(kilos) {
 		return cosas.any({cosa => cosa.peso() == kilos})
+	}
+
+	method estaExcedidoDePeso() {
+		return self.tara() + self.sumaDePesoEnElCamion() > capacidadMaxima 
 	}
 }
