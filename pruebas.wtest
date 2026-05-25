@@ -9,4 +9,9 @@ describe "las pruebas del camion" {
         camion.cargar(paqueteLadrillos)
         assert.equals(2 , camion.cosas().size())
     }
+    test "peso en el camion" {
+        camion.cargar(paqueteLadrillos)
+        camion.cargar(bumblebee)
+        assert.equals(true, camion.suPesoEsPar())
+    }
 }
