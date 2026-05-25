@@ -9,12 +9,19 @@ describe "las pruebas del camion" {
         camion.cargar(paqueteLadrillos)
         assert.equals(2 , camion.cosas().size())
     }
-    test "peso en el camion" {
+    test "peso en el camion es numero par?" {
         camion.cargar(paqueteLadrillos)
         camion.cargar(bumblebee)
         assert.equals(true, camion.suPesoEsPar())
         arenaGranel.peso(1)
         camion.cargar(arenaGranel)
         assert.equals(false, camion.suPesoEsPar())
+    }
+    test "hay algo que pese esto en el camion?" {
+        camion.cargar(paqueteLadrillos)
+        camion.cargar(knightRider)
+        assert.equals(true , camion.tieneAlgoQuePesa(500))
+        assert.equals(true , camion.tieneAlgoQuePesa(2))
+        assert.equals(false , camion.tieneAlgoQuePesa(5))
     }
 }

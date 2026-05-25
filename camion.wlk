@@ -18,4 +18,8 @@ object camion {
 	method sumaDePesos() {
 		return cosas.sum({cosa => cosa.peso()})
 	}
+
+	method tieneAlgoQuePesa(kilos) {
+		return cosas.any({cosa => cosa.peso() == kilos})
+	}
 }
