@@ -34,7 +34,7 @@ object paqueteLadrillos {
 	}
 }
 
-object bateriaAntiaérea {
+object bateriaAntiaerea {
 	var property estaConLosMisiles = true
 	method peso() {
 		return 300
