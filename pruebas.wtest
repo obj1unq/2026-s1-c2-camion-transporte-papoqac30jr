@@ -13,5 +13,8 @@ describe "las pruebas del camion" {
         camion.cargar(paqueteLadrillos)
         camion.cargar(bumblebee)
         assert.equals(true, camion.suPesoEsPar())
+        arenaGranel.peso(1)
+        camion.cargar(arenaGranel)
+        assert.equals(false, camion.suPesoEsPar())
     }
 }
