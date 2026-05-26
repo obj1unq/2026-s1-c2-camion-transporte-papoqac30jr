@@ -40,4 +40,8 @@ object camion {
 	method cosasQueSuperaAOtraEnPeligrosidad(cosa) {
 		return self.cosasQueSuperanEsteNivelDePeligrosidad(cosa.nivelPeligrosidad())
 	}
+
+	method puedeCircularEnRutaDeNivel(peligrosidad) {
+		return not(self.estaExcedidoDePeso()) and self.cosasQueSuperanEsteNivelDePeligrosidad(peligrosidad).size() == 0
+	}
 }

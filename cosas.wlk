@@ -33,8 +33,9 @@ object bumblebeeRobot {
 }
 
 object paqueteLadrillos {
+	var property cantidadDeLadrillos = 1
 	method peso() {
-		return 2
+		return 2 * cantidadDeLadrillos
 	}
 
 	method nivelPeligrosidad() {

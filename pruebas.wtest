@@ -61,4 +61,17 @@ describe "las pruebas del camion" {
         assert.equals(#{} , camion.cosasQueSuperanEsteNivelDePeligrosidad(200))
         assert.equals(#{} , camion.cosasQueSuperaAOtraEnPeligrosidad(residuosRadioactivos))
     }
+
+    test "circulacion en la ruta" {
+        camion.cargar(bumblebee)
+        bumblebee.estado(bumblebeeAuto)
+        paqueteLadrillos.cantidadDeLadrillos(300)
+        camion.cargar(paqueteLadrillos)
+        assert.equals(true , camion.puedeCircularEnRutaDeNivel(20))
+        paqueteLadrillos.cantidadDeLadrillos(400)
+        assert.equals(false , camion.puedeCircularEnRutaDeNivel(20))
+        paqueteLadrillos.cantidadDeLadrillos(300)
+        bumblebee.estado(bumblebeeRobot)
+        assert.equals(false , camion.puedeCircularEnRutaDeNivel(20))
+    }
 }
