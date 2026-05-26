@@ -48,4 +48,17 @@ describe "las pruebas del camion" {
         assert.equals(bateriaAntiaerea , camion.elQueTieneNivelDePeligrosidadDe(100))
         assert.throwsException({camion.elQueTieneNivelDePeligrosidadDe(150)})
     }
+    test "peligro + peligro = peligro" {
+        bateriaAntiaerea.estado(bateriaAntiaereaCargada)
+        camion.cargar(bateriaAntiaerea)
+        bumblebee.estado(bumblebeeAuto)
+        camion.cargar(knightRider)
+        camion.cargar(paqueteLadrillos)
+        assert.equals(#{bateriaAntiaerea} , camion.cosasQueSuperanEsteNivelDePeligrosidad(15))
+        assert.equals(#{bateriaAntiaerea} , camion.cosasQueSuperaAOtraEnPeligrosidad(bumblebee))
+        assert.equals(#{bateriaAntiaerea , knightRider} , camion.cosasQueSuperanEsteNivelDePeligrosidad(2))
+        assert.equals(#{bateriaAntiaerea , knightRider}, camion.cosasQueSuperaAOtraEnPeligrosidad(paqueteLadrillos))
+        assert.equals(#{} , camion.cosasQueSuperanEsteNivelDePeligrosidad(200))
+        assert.equals(#{} , camion.cosasQueSuperaAOtraEnPeligrosidad(residuosRadioactivos))
+    }
 }

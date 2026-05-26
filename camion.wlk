@@ -32,4 +32,12 @@ object camion {
 	method elQueTieneNivelDePeligrosidadDe(peligrosidad) {
 		return cosas.find({cosa => cosa.nivelPeligrosidad() == peligrosidad})
 	}
+
+	method cosasQueSuperanEsteNivelDePeligrosidad(peligrosidad) {
+		return cosas.filter({cosa => cosa.nivelPeligrosidad() > peligrosidad})
+	}
+
+	method cosasQueSuperaAOtraEnPeligrosidad(cosa) {
+		return self.cosasQueSuperanEsteNivelDePeligrosidad(cosa.nivelPeligrosidad())
+	}
 }
