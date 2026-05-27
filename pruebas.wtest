@@ -143,8 +143,8 @@ describe "los bultos del camion" {
     }
 }
 
-describe "el acidente del camion" {
-    test "el acidente parte 1" {
+describe "el accidente del camion" {
+    test "el accidente parte 1" {
         bumblebee.estado(bumblebeeAuto)
         contenedorPortuario.meter(bumblebee)
         contenedorPortuario.meter(knightRider)
@@ -158,11 +158,26 @@ describe "el acidente del camion" {
         camion.cargar(paqueteLadrillos)
         bateriaAntiaerea.estado(bateriaAntiaereaCargada)
         camion.cargar(bateriaAntiaerea)
-        camion.acidente()
+        camion.accidente()
         assert.equals(bumblebeeRobot , bumblebee.estado())
         assert.equals(30 , residuosRadioactivos.peso())
         assert.equals(70 , arenaGranel.peso())
         assert.equals(88 , paqueteLadrillos.cantidadDeLadrillos())
+        assert.equals(bateriaAntiaereaVacia , bateriaAntiaerea.estado())
+    }
+    test "el accidente del camion segunda parte " {
+        bumblebee.estado(bumblebeeRobot)
+        camion.cargar(bumblebee)
+        residuosRadioactivos.peso(30)
+        camion.cargar(residuosRadioactivos)
+        paqueteLadrillos.cantidadDeLadrillos(10)
+        camion.cargar(paqueteLadrillos)
+        bateriaAntiaerea.estado(bateriaAntiaereaVacia)
+        camion.cargar(bateriaAntiaerea)
+        camion.accidente()
+        assert.equals(bumblebeeAuto , bumblebee.estado())
+        assert.equals(45 , residuosRadioactivos.peso())
+        assert.equals(0 , paqueteLadrillos.cantidadDeLadrillos())
         assert.equals(bateriaAntiaereaVacia , bateriaAntiaerea.estado())
     }
 }
