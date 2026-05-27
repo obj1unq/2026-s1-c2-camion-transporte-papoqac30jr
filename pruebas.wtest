@@ -111,7 +111,10 @@ describe "las pruebas del camion" {
         camion.cargar(paqueteLadrillos)
         assert.equals([800 , 600] , camion.pesosDeLasCosasEnElCamion())
     }
-    test "total Bultos primera parte" {
+}
+
+describe "los bultos del camion" {
+        test "total Bultos primera parte" {
         contenedorPortuario.meter(knightRider)
         contenedorPortuario.meter(bumblebee)
         embalajeDeSeguridad.encubre(residuosRadioactivos)
@@ -137,5 +140,29 @@ describe "las pruebas del camion" {
         camion.cargar(paqueteLadrillos)
         camion.cargar(arenaGranel)
         assert.equals(4 , camion.totalBultos())
+    }
+}
+
+describe "el acidente del camion" {
+    test "el acidente parte 1" {
+        bumblebee.estado(bumblebeeAuto)
+        contenedorPortuario.meter(bumblebee)
+        contenedorPortuario.meter(knightRider)
+        camion.cargar(contenedorPortuario)
+        residuosRadioactivos.peso(30)
+        embalajeDeSeguridad.encubre(residuosRadioactivos)
+        camion.cargar(embalajeDeSeguridad)
+        arenaGranel.peso(50)
+        camion.cargar(arenaGranel)
+        paqueteLadrillos.cantidadDeLadrillos(100)
+        camion.cargar(paqueteLadrillos)
+        bateriaAntiaerea.estado(bateriaAntiaereaCargada)
+        camion.cargar(bateriaAntiaerea)
+        camion.acidente()
+        assert.equals(bumblebeeRobot , bumblebee.estado())
+        assert.equals(30 , residuosRadioactivos.peso())
+        assert.equals(70 , arenaGranel.peso())
+        assert.equals(88 , paqueteLadrillos.cantidadDeLadrillos())
+        assert.equals(bateriaAntiaereaVacia , bateriaAntiaerea.estado())
     }
 }

@@ -5,15 +5,24 @@ object knightRider {
 	method bulto() {
 		return 1
 	}
+
+	method acidentado() {
+
+	}
 }
 
 object arenaGranel {
 	var property peso = 0
+	const property pesoPorAccidente = 20
 
 	method nivelPeligrosidad() { return 1 }
 
 	method bulto() {
 		return 1
+	}
+
+	method acidentado() {
+		peso = peso + pesoPorAccidente
 	}
 }
 
@@ -30,17 +39,29 @@ object bumblebee {
 	method bulto() {
 		return 2
 	}
+
+	method acidentado() {
+		estado = estado.inverso()
+	}
 }
 
 object bumblebeeAuto {
 	method nivelPeligrosidad() {
 		return 15
 	}
+	
+	method inverso() {
+		return bumblebeeRobot
+	}
 }
 
 object bumblebeeRobot {
 	method nivelPeligrosidad() {
 		return 30
+	}
+
+	method inverso() {
+		return bumblebeeAuto
 	}
 }
 
@@ -73,6 +94,14 @@ object paqueteLadrillos {
 			3
 		}
 	}
+
+	method acidentado() {
+		if (cantidadDeLadrillos >= 12) {
+			cantidadDeLadrillos = cantidadDeLadrillos - 12
+		} else {
+			cantidadDeLadrillos = 0
+		}
+	}
 }
 
 object bateriaAntiaerea {
@@ -87,6 +116,10 @@ object bateriaAntiaerea {
 
 	method bulto() {
 		return estado.bulto()
+	}
+
+	method acidentado() {
+		estado = bateriaAntiaereaVacia
 	}
 }
 
@@ -112,6 +145,7 @@ object bateriaAntiaereaVacia {
 
 object residuosRadioactivos {
 	var property peso = 0
+	const property pesoPorAcidente = 15
 	method peso() {
 		return peso
 	}
@@ -122,6 +156,10 @@ object residuosRadioactivos {
 
 	method bulto() {
 		return 1
+	}
+
+	method acidentado() {
+		peso = peso + pesoPorAcidente
 	}
 }
 
@@ -161,6 +199,10 @@ object contenedorPortuario {
 	method bulto() {
 		return bulto + cosasDentro.sum({cosa => cosa.bulto()})
 	}
+
+	method acidentado() {
+		cosasDentro.forEach({cosa => cosa.acidentado()})
+	}
 }
 
 object embalajeDeSeguridad {
@@ -175,5 +217,9 @@ object embalajeDeSeguridad {
 
 	method bulto() {
 		return 2
+	}
+
+	method acidentado() {
+
 	}
 }
