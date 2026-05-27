@@ -44,4 +44,8 @@ object camion {
 	method puedeCircularEnRutaDeNivel(peligrosidad) {
 		return not(self.estaExcedidoDePeso()) and self.cosasQueSuperanEsteNivelDePeligrosidad(peligrosidad).size() == 0
 	}
+
+	method tieneAlgoQuePesaEntre(min , max) {
+		return cosas.any({cosa => cosa.peso().between(min, max)})
+	}
 }
