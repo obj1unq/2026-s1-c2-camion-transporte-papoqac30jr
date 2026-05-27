@@ -98,4 +98,11 @@ describe "las pruebas del camion" {
         assert.equals(true , camion.tieneAlgoQuePesaEntre(5 , 1000))
         assert.equals(false , camion.tieneAlgoQuePesaEntre(900 , 1000))
     }
+    test "lo mas pesado" {
+        assert.throwsException({camion.laCosaMasPesada()})
+        camion.cargar(bumblebee)
+        paqueteLadrillos.cantidadDeLadrillos(300)
+        camion.cargar(paqueteLadrillos)
+        assert.equals(bumblebee , camion.laCosaMasPesada())
+    }
 }

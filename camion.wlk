@@ -48,4 +48,8 @@ object camion {
 	method tieneAlgoQuePesaEntre(min , max) {
 		return cosas.any({cosa => cosa.peso().between(min, max)})
 	}
+
+	method laCosaMasPesada() {
+		return cosas.max({cosa => cosa.peso()})
+	}
 }
