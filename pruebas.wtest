@@ -105,4 +105,10 @@ describe "las pruebas del camion" {
         camion.cargar(paqueteLadrillos)
         assert.equals(bumblebee , camion.laCosaMasPesada())
     }
+    test "cosas en sus respectivos pesos" {
+        camion.cargar(bumblebee)
+        paqueteLadrillos.cantidadDeLadrillos(300)
+        camion.cargar(paqueteLadrillos)
+        assert.equals([800 , 600] , camion.pesosDeLasCosasEnElCamion())
+    }
 }

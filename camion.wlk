@@ -52,4 +52,12 @@ object camion {
 	method laCosaMasPesada() {
 		return cosas.max({cosa => cosa.peso()})
 	}
+
+	method pesosDeLasCosasEnElCamion() {
+		return self.pesoDeLasCosas(cosas.asList())
+	}
+
+	method pesoDeLasCosas(objectos) {
+		return objectos.map({cosa => cosa.peso()})
+	} 
 }
