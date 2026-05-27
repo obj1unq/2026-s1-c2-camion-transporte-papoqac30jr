@@ -1,12 +1,20 @@
 object knightRider {
 	method peso() { return 500 }
 	method nivelPeligrosidad() { return 10 }
+
+	method bulto() {
+		return 1
+	}
 }
 
 object arenaGranel {
 	var property peso = 0
 
 	method nivelPeligrosidad() { return 1 }
+
+	method bulto() {
+		return 1
+	}
 }
 
 object bumblebee {
@@ -17,6 +25,10 @@ object bumblebee {
 	
 	method nivelPeligrosidad() {
 		return estado.nivelPeligrosidad()
+	}
+
+	method bulto() {
+		return 2
 	}
 }
 
@@ -41,10 +53,30 @@ object paqueteLadrillos {
 	method nivelPeligrosidad() {
 		return 2
 	}
+
+	method bulto() {
+		return if (self.tieneEntreEstaCantidad(1 , 100)) {
+			1
+		} else {
+			self.bultoOtroCaso()
+		}
+	}
+
+	method tieneEntreEstaCantidad(min , max) {
+		return cantidadDeLadrillos.between(min, max)
+	}
+
+	method bultoOtroCaso() {
+		return if (self.tieneEntreEstaCantidad(101 , 300)) {
+			2
+		} else {
+			3
+		}
+	}
 }
 
 object bateriaAntiaerea {
-	var property estado = bateriaAntiaereaVacia
+	var property estado = bateriaAntiaereaCargada
 	method peso() {
 		return 300
 	}
@@ -52,17 +84,29 @@ object bateriaAntiaerea {
 	method nivelPeligrosidad() {
 		return estado.nivelPeligrosidad()
 	}
+
+	method bulto() {
+		return estado.bulto()
+	}
 }
 
 object bateriaAntiaereaCargada {
 	method nivelPeligrosidad() {
 		return 100
 	}
+
+	method bulto() {
+		return 2
+	}
 }
 
 object bateriaAntiaereaVacia {
 	method nivelPeligrosidad() {
 		return 0
+	}
+
+	method bulto() {
+		return 1
 	}
 }
 
@@ -75,11 +119,16 @@ object residuosRadioactivos {
 	method nivelPeligrosidad() {
 		return 200
 	}
+
+	method bulto() {
+		return 1
+	}
 }
 
 object contenedorPortuario {
 	const property pesoContenedor = 100
 	const property cosasDentro = []
+	const property bulto = 1
 
 	method meter(cosa) {
 		cosasDentro.add(cosa)
@@ -108,6 +157,10 @@ object contenedorPortuario {
 	method nivelPeligrosidadDe(cosas) {
 		return cosas.map({cosa => cosa.nivelPeligrosidad()})
 	}
+
+	method bulto() {
+		return bulto + cosasDentro.sum({cosa => cosa.bulto()})
+	}
 }
 
 object embalajeDeSeguridad {
@@ -118,5 +171,9 @@ object embalajeDeSeguridad {
 
 	method nivelPeligrosidad() {
 		return encubre.nivelPeligrosidad() / 2
+	}
+
+	method bulto() {
+		return 2
 	}
 }

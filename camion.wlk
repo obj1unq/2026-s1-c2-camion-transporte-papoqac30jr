@@ -60,4 +60,8 @@ object camion {
 	method pesoDeLasCosas(objectos) {
 		return objectos.map({cosa => cosa.peso()})
 	} 
+
+	method totalBultos() {
+		return cosas.sum({cosa => cosa.bulto()})
+	}
 }

@@ -111,4 +111,31 @@ describe "las pruebas del camion" {
         camion.cargar(paqueteLadrillos)
         assert.equals([800 , 600] , camion.pesosDeLasCosasEnElCamion())
     }
+    test "total Bultos primera parte" {
+        contenedorPortuario.meter(knightRider)
+        contenedorPortuario.meter(bumblebee)
+        embalajeDeSeguridad.encubre(residuosRadioactivos)
+        camion.cargar(contenedorPortuario)
+        camion.cargar(embalajeDeSeguridad)
+        camion.cargar(arenaGranel)
+        paqueteLadrillos.cantidadDeLadrillos(50)
+        camion.cargar(paqueteLadrillos)
+        bateriaAntiaerea.estado(bateriaAntiaereaVacia)
+        camion.cargar(bateriaAntiaerea)
+        assert.equals(9 , camion.totalBultos())
+    }
+    test "total Bultos segunda parte , la venganza del contenedor" {
+        camion.cargar(contenedorPortuario)
+        bateriaAntiaerea.estado(bateriaAntiaereaCargada)
+        camion.cargar(bateriaAntiaerea)
+        paqueteLadrillos.cantidadDeLadrillos(150)
+        camion.cargar(paqueteLadrillos)
+        assert.equals(5 , camion.totalBultos())
+    }
+    test "total bultos tercera parte , la resurecion del paquete de ladrillos" {
+        paqueteLadrillos.cantidadDeLadrillos(350)
+        camion.cargar(paqueteLadrillos)
+        camion.cargar(arenaGranel)
+        assert.equals(4 , camion.totalBultos())
+    }
 }
