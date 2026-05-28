@@ -181,3 +181,28 @@ describe "el accidente del camion" {
         assert.equals(bateriaAntiaereaVacia , bateriaAntiaerea.estado())
     }
 }
+
+describe "el camino" {
+    test "primer caso ruta 9 exitoso" {
+        almacen.agregar(knightRider)
+        almacen.agregar(residuosRadioactivos)
+        bumblebee.estado(bumblebeeAuto)
+        camion.cargar(bumblebee)
+        arenaGranel.peso(50)
+        camion.cargar(arenaGranel)
+        camion.transportar(almacen, ruta9)
+        assert.equals(#{knightRider , residuosRadioactivos , bumblebee , arenaGranel} , almacen.cosasDentro())
+        assert.equals(#{} , camion.cosas())
+    }
+    test "primer caso Fallido en la ruta 9" {
+        almacen.agregar(knightRider)
+        almacen.agregar(residuosRadioactivos)
+        bumblebee.estado(bumblebeeAuto)
+        camion.cargar(bumblebee)
+        arenaGranel.peso(2000)
+        camion.cargar(arenaGranel)
+        camion.transportar(almacen, ruta9)
+        assert.equals(#{knightRider , residuosRadioactivos} , almacen.cosasDentro())
+        assert.equals(#{bumblebee , arenaGranel} , camion.cosas())
+    }
+}

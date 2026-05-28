@@ -220,6 +220,6 @@ object embalajeDeSeguridad {
 	}
 
 	method acidentado() {
-
+		
 	}
 }

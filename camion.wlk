@@ -14,10 +14,10 @@ object camion {
 	}
 
 	method elPesoDeLasCosasEsPar() {
-		return self.sumaDePesoEnElCamion().even()
+		return self.sumaDePeso().even()
 	}
 
-	method sumaDePesoEnElCamion() {
+	method sumaDePeso() {
 		return cosas.sum({cosa => cosa.peso()})
 	}
 
@@ -26,7 +26,7 @@ object camion {
 	}
 
 	method estaExcedidoDePeso() {
-		return self.tara() + self.sumaDePesoEnElCamion() > capacidadMaxima 
+		return self.tara() + self.sumaDePeso() > capacidadMaxima 
 	}
 
 	method elQueTieneNivelDePeligrosidadDe(peligrosidad) {
@@ -67,5 +67,41 @@ object camion {
 
 	method accidente() {
 		cosas.asList().forEach({cosa => cosa.acidentado()})
+	}
+
+	method transportar(destino , camino) {
+		if (camino.puedeViajar(self)) {
+			self.depositarEn(destino)
+		}
+	}
+
+	method depositarEn(lugar) {
+		lugar.depositar(cosas)
+		cosas.clear()
+	}
+}
+
+object almacen {
+	const property cosasDentro = #{}
+
+	method agregar(cosa) {
+		cosasDentro.add(cosa)
+	}
+
+	method depositar(objectos) {
+		cosasDentro.addAll(objectos)
+	}
+}
+
+object ruta9 {
+	method puedeViajar(transporte) {
+		return transporte.puedeCircularEnRutaDeNivel(20)
+	}
+}
+
+object caminosVecinales {
+	var property pesoMaximo = 0
+	method puedeViajar(transporte) {
+		return pesoMaximo >= transporte.sumaDePeso()
 	}
 }
