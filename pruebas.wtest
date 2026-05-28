@@ -197,11 +197,44 @@ describe "el camino" {
     test "primer caso Fallido en la ruta 9" {
         almacen.agregar(knightRider)
         almacen.agregar(residuosRadioactivos)
+        bumblebee.estado(bumblebeeRobot)
+        camion.cargar(bumblebee)
+        arenaGranel.peso(50)
+        camion.cargar(arenaGranel)
+        camion.transportar(almacen, ruta9)
+        assert.equals(#{knightRider , residuosRadioactivos} , almacen.cosasDentro())
+        assert.equals(#{bumblebee , arenaGranel} , camion.cosas())
+    }
+    test "segundo caso fallido en la rua 9" {
+        almacen.agregar(knightRider)
+        almacen.agregar(residuosRadioactivos)
         bumblebee.estado(bumblebeeAuto)
         camion.cargar(bumblebee)
         arenaGranel.peso(2000)
         camion.cargar(arenaGranel)
         camion.transportar(almacen, ruta9)
+        assert.equals(#{knightRider , residuosRadioactivos} , almacen.cosasDentro())
+        assert.equals(#{bumblebee , arenaGranel} , camion.cosas())
+    }
+    test "caminos vecinales exito" {
+        almacen.agregar(knightRider)
+        almacen.agregar(residuosRadioactivos)
+        bumblebee.estado(bumblebeeAuto)
+        camion.cargar(bumblebee)
+        arenaGranel.peso(50)
+        camion.cargar(arenaGranel)
+        camion.transportar(almacen, caminosVecinales)
+        assert.equals(#{knightRider , residuosRadioactivos , bumblebee , arenaGranel} , almacen.cosasDentro())
+        assert.equals(#{} , camion.cosas())
+    }
+    test "caminos vecinales fracaso" {
+        almacen.agregar(knightRider)
+        almacen.agregar(residuosRadioactivos)
+        bumblebee.estado(bumblebeeAuto)
+        camion.cargar(bumblebee)
+        arenaGranel.peso(50)
+        camion.cargar(arenaGranel)
+        camion.transportar(almacen, caminosVecinales)
         assert.equals(#{knightRider , residuosRadioactivos} , almacen.cosasDentro())
         assert.equals(#{bumblebee , arenaGranel} , camion.cosas())
     }
